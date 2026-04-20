@@ -26,7 +26,7 @@ int swap(int *a, int *b) {
 }
 
 // Has both a left side and right side of the array (0, 10; 1, 9; etc...) 
-// those are getting swapped (10, 0; 9, 1;) this gives us instead of 10 
+// those are getting swapped (10, 0; 9, 1;) this gives us instead of 20 
 // steps (in this use case) 5 steps
 int reverse_arr_w_swap(int arr[], int n) {
     int left = 0, right = n - 1;
