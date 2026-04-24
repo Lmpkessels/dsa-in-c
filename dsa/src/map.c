@@ -21,9 +21,6 @@ int count(char k[MAX_SIZE][100]) {
 
 // Get the index of a key within keys
 int get_index(char key[]) {
-    char keys[MAX_SIZE][100] = {"Type", "Data", "Data-structure"};
-    size = count(keys);
-
     for (int i = 0; i < size; i++) {
         if (strcmp(keys[i], key) == 0) {
             return i; // Return when key is found
@@ -33,14 +30,44 @@ int get_index(char key[]) {
     return -1; // Return when key is not found
 }
 
+// Insert a key value pair
+void insert(char key[], int value) {
+    int index = get_index(key);
+
+    // If key does not exist insert key and value
+    if (index == -1) {
+        strcpy(keys[size], key);
+        values[size] = value;
+        size++;
+    } else { // Key already exists update value if needed
+        values[size] = value;
+    }
+}
+
+// Get the value that is assigned to the key
+int get_value(char key[]) {
+    int index = get_index(key);
+
+    if (index == -1) { // If key does not exist
+        return -1;
+    } else {
+        return values[index]; // If key does exist
+    }
+}
+
+// Print the entire map
+int print_map() {
+    for (int i = 0; i < size; i++) {
+        printf("%s: %d\n", keys[i], values[i]);
+    }
+}
+
 int main(void) {
-    char *key = "Data";
+    insert("Age_Peter", 18);
+    insert("Age_Karel", 19);
+    insert("Age_Luke", 26);
 
-    char get_index_key = get_index(key);
+    print_map();
 
-    printf("%d\n", get_index_key);
-
-    int c = count(keys);
-
-    printf("%d\n", c);
+    printf("%d\n", get_value("Age_Peter"));
 }
